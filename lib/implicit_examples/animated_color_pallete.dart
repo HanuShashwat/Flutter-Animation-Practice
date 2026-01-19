@@ -1,3 +1,4 @@
+import 'package:animation_practice/implicit_examples/animated_shopping_cart_button.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
@@ -54,6 +55,8 @@ class _AnimatedColorPaletteState extends State<AnimatedColorPalette> {
               onPressed: regeneratePalette,
               child: const Text('Generate New Palette'),
             ),
+            SizedBox(height: 50,),
+            ShoppingCartButton(),
           ],
         ),
       ),
