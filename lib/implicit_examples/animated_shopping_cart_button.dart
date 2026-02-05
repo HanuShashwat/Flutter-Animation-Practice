@@ -20,7 +20,7 @@ class _ShoppingCartButtonState extends State<ShoppingCartButton> {
             });
           },
           child: AnimatedContainer(
-            duration: const Duration(milliseconds: 1000),
+            duration: const Duration(milliseconds: 500),
             width: isExpanded ? 200 : 80.0,
             height: 60.0,
             decoration: BoxDecoration(
