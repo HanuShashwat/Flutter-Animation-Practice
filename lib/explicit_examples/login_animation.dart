@@ -7,7 +7,26 @@ class LoginScreenAnimation extends StatefulWidget {
   State<LoginScreenAnimation> createState() => _LoginScreenAnimationState();
 }
 
-class _LoginScreenAnimationState extends State<LoginScreenAnimation> {
+class _LoginScreenAnimationState extends State<LoginScreenAnimation> with SingleTickerProviderStateMixin {
+  late Animation<double> logoFadeAnimation;
+  late AnimationController controller;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller = AnimationController(
+        vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    );
+    logoFadeAnimation = Tween<double>(
+      begin: 0,
+      end: 1,
+    ).animate(controller);
+
+    controller.forward();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,8 +34,11 @@ class _LoginScreenAnimationState extends State<LoginScreenAnimation> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const FlutterLogo(
-              size: 100.0,
+            FadeTransition(
+              opacity: logoFadeAnimation,
+              child: const FlutterLogo(
+                size: 100.0,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
