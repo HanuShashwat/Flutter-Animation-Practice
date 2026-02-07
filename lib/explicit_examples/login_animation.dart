@@ -10,6 +10,7 @@ class LoginScreenAnimation extends StatefulWidget {
 class _LoginScreenAnimationState extends State<LoginScreenAnimation> with SingleTickerProviderStateMixin {
   late Animation<double> logoFadeAnimation;
   late AnimationController controller;
+  late Animation<Offset> slideAnimation;
 
   @override
   void initState() {
@@ -23,6 +24,8 @@ class _LoginScreenAnimationState extends State<LoginScreenAnimation> with Single
       begin: 0,
       end: 1,
     ).animate(controller);
+
+    slideAnimation = Tween(begin: const Offset(-1, -1), end: Offset.zero).animate(controller);
 
     controller.forward();
   }
@@ -42,26 +45,29 @@ class _LoginScreenAnimationState extends State<LoginScreenAnimation> with Single
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                children: [
-                  const TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Username',
+              child: SlideTransition(
+                position: slideAnimation,
+                child: Column(
+                  children: [
+                    const TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Username',
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 16.0),
-                  const TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Password',
+                    const SizedBox(height: 16.0),
+                    const TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Password',
+                      ),
+                      obscureText: true,
                     ),
-                    obscureText: true,
-                  ),
-                  const SizedBox(height: 16.0),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: const Text('Login'),
-                  ),
-                ],
+                    const SizedBox(height: 16.0),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: const Text('Login'),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
