@@ -11,6 +11,7 @@ class _LoginScreenAnimationState extends State<LoginScreenAnimation> with Single
   late Animation<double> logoFadeAnimation;
   late AnimationController controller;
   late Animation<Offset> slideAnimation;
+  late Animation<double> scaleAnimation;
 
   @override
   void initState() {
@@ -20,6 +21,7 @@ class _LoginScreenAnimationState extends State<LoginScreenAnimation> with Single
         vsync: this,
       duration: const Duration(milliseconds: 1500),
     );
+
     logoFadeAnimation = Tween<double>(
       begin: 0,
       end: 1,
@@ -34,6 +36,11 @@ class _LoginScreenAnimationState extends State<LoginScreenAnimation> with Single
         curve: Curves.ease,
       ),
     );
+
+    scaleAnimation = Tween<double>(
+      begin: 0,
+      end: 1,
+    ).animate(controller);
 
     controller.forward();
   }
@@ -55,26 +62,29 @@ class _LoginScreenAnimationState extends State<LoginScreenAnimation> with Single
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: SlideTransition(
                 position: slideAnimation,
-                child: Column(
-                  children: [
-                    const TextField(
-                      decoration: InputDecoration(
-                        labelText: 'Username',
+                child: ScaleTransition(
+                  scale: scaleAnimation,
+                  child: Column(
+                    children: [
+                      const TextField(
+                        decoration: InputDecoration(
+                          labelText: 'Username',
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 16.0),
-                    const TextField(
-                      decoration: InputDecoration(
-                        labelText: 'Password',
+                      const SizedBox(height: 16.0),
+                      const TextField(
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                        ),
+                        obscureText: true,
                       ),
-                      obscureText: true,
-                    ),
-                    const SizedBox(height: 16.0),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('Login'),
-                    ),
-                  ],
+                      const SizedBox(height: 16.0),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: const Text('Login'),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
