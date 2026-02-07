@@ -25,7 +25,15 @@ class _LoginScreenAnimationState extends State<LoginScreenAnimation> with Single
       end: 1,
     ).animate(controller);
 
-    slideAnimation = Tween(begin: const Offset(-1, -1), end: Offset.zero).animate(controller);
+    slideAnimation = Tween(
+      begin: const Offset(-1, -1),
+      end: Offset.zero
+    ).animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: Curves.ease,
+      ),
+    );
 
     controller.forward();
   }
