@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'explicit_examples/login_animation.dart';
+import 'explicit_examples/list_animation.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const LoginScreenAnimation(),
+      home: const ListAnimation(),
     );
   }
 }
