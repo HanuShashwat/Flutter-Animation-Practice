@@ -26,7 +26,14 @@ class RadialProgressAnimation extends StatelessWidget {
                 backgroundColor: Colors.grey.shade100,
                 color: color,
               ),
-            )
+            ),
+            Text(
+              '${(progress * 100).toInt()}%',
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ],
         ),
       ),
