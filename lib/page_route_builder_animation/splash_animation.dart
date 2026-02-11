@@ -26,8 +26,17 @@ class _SplashAnimationState extends State<SplashAnimation> with SingleTickerProv
     controller.addListener(() {
       if (controller.isCompleted) {
         Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => const Destination(),
+          
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) {
+              return const Destination();
+            },
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+            },
           ),
         );
 
@@ -77,6 +86,9 @@ class Destination extends StatelessWidget {
       backgroundColor: Colors.blue,
       appBar: AppBar(
         title: const Text('Go Back'),
+      ),
+      body: const Center(
+        child: Text('Hello World'),
       ),
     );
   }
