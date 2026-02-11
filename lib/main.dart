@@ -1,5 +1,5 @@
+import 'package:animation_practice/page_route_builder_animation/splash_animation.dart';
 import 'package:flutter/material.dart';
-import 'explicit_examples/loading_animation.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,10 +16,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const RadialProgressAnimation(
-        color: Colors.blue,
-        progress: 0.65,
-      ),
+      home: const SplashAnimation(),
     );
   }
 }
