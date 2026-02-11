@@ -26,18 +26,9 @@ class _SplashAnimationState extends State<SplashAnimation> with SingleTickerProv
     controller.addListener(() {
       if (controller.isCompleted) {
         Navigator.of(context).push(
-          
-          PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) {
-              return const Destination();
-            },
-            transitionsBuilder: (context, animation, secondaryAnimation, child) {
-              return FadeTransition(
-                opacity: animation,
-                child: child,
-              );
-            },
-          ),
+            MyCustomRouteTransition(
+              route: const Destination(),
+            ),
         );
 
         Timer(const Duration(milliseconds: 500), () {
@@ -94,3 +85,18 @@ class Destination extends StatelessWidget {
   }
 }
 
+class MyCustomRouteTransition extends PageRouteBuilder {
+  final Widget route;
+  MyCustomRouteTransition({required this.route})
+    : super(
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return route;
+    },
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return FadeTransition(
+        opacity: animation,
+        child: child,
+      );
+    },
+  );
+}
