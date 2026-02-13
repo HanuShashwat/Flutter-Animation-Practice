@@ -29,13 +29,12 @@ class _BouncingBallAnimationState extends State<BouncingBallAnimation> with Sing
           children: [
             AnimatedBuilder(
               animation: animation,
-              builder: (context, child) => CustomPaint(),
-              child: CustomPaint(
-                size: const Size(200, 200),
-                painter: BouncingBallPainter(
-                  animation.value
-                ),
-              ),
+              builder: (context, child) {
+                return CustomPaint(
+                  size: const Size(200, 200),
+                  painter: BouncingBallPainter(animation.value),
+                );
+              },
             ),
           ],
         ),
@@ -51,7 +50,7 @@ class BouncingBallPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     canvas.drawCircle(
-      Offset(size.width/2, 0),
+      Offset(size.width/2, size.height - (size.height * animationValue)),
       20,
       Paint()..color = Colors.blue,
     );
